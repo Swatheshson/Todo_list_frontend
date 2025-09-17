@@ -1,0 +1,17 @@
+<h1 class="heading">Spring Boot & Angualr Crud</h1>
+
+<div class="container">
+    <form (ngSubmit)="createTask()">
+        <div class="row mt-5">
+            <div class="col-3">
+                <input type="text" class="form-control" [(ngModel)]="newTask.description" name="newtaskdescription">
+            </div>
+            <div class="col-2">
+                <button class="btn btn-success" type="submit">Add Task</button>
+            </div>
+        </div>
+    </form>
+
+</div>
+
+

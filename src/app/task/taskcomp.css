@@ -1,0 +1,13 @@
+.heading{
+    display:flex;
+    flex-direction:row;
+    justify-content:center;
+    font-style:oblique;
+    color:#2c442c;
+}
+.crtask{
+    border:1px solid black;
+    padding:12px;
+    margin:5px;
+
+}
