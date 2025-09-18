@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { TaskService } from './task.service';
 import { Task } from './taskf.model';
 import { FormsModule } from '@angular/forms';
@@ -12,16 +12,30 @@ import { FormsModule } from '@angular/forms';
   templateUrl: './taskcomp.html',
   styleUrl: './taskcomp.css'
 })
-export class Taskcomp {
+export class Taskcomp implements OnInit {
   //dependency injection is done here 
   constructor(private taskService:TaskService){}
-
+  
+  
   newTask:Task = {description:"", completed:false};
 
+  tasks:Task[] = [];
+    ngOnInit(): void {
+    this.getAllTasks();
+  }
   createTask():void{
     this.taskService.createTask(this.newTask).subscribe((createdTask)=>{
       this.newTask={description:"",completed:false}
     })
   }
+
+  getAllTasks():void{
+    this.taskService.getAllTasks().subscribe((tasks)=>
+      {
+        this.tasks=tasks;
+      }
+    )
+  }
+
 
 }

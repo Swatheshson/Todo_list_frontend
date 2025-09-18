@@ -8,13 +8,18 @@ import { Observable } from 'rxjs';
 })
 export class TaskService {
 
-  private apiUrl = "http://localhost:8080/api/tasks";
+  private apiUrl = "http://localhost:8080/postmethod";
   //we send api requests with this
   constructor(private httpClient: HttpClient){}
 
   createTask(newTask:Task):Observable<Task>
   {
      return this.httpClient.post<Task>(this.apiUrl,newTask);
+  }
+
+  //get tasks method
+  getAllTasks():Observable<Task[]>{
+    return this.httpClient.get<Task[]>(this.apiUrl);
   }
  
 }
