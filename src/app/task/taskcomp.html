@@ -1,41 +1,59 @@
-<h1 class="heading">Spring Boot & Angualr Crud</h1>
+<!-- Header -->
+<h1 class="heading text-center my-4">🌟 Spring Boot & Angular CRUD 🌟</h1>
 
 <div class="container">
-    <form (ngSubmit)="createTask()">
-        <div class="row mt-5">
-            <div class="col-3">
-                <input type="text" class="form-control" [(ngModel)]="newTask.description" name="newtaskdescription">
-            </div>
-            <div class="col-2">
-                <button class="btn btn-success" type="submit">Add Task</button>
-            </div>
-        </div>
-        <div class="row mt-5">
-            <div class="col-3">
-                <div *ngIf="(tasks.length<=0);else taskList">
-                    <h3>NO DATA</h3>
-                </div>
-                <ng-template #taskList>
-                    <ul class="list-group">
-                        <li class="list-group-item bg-secondary text-light" *ngFor="let task of tasks">
-                            <div class="row">
-                                <div class="col-6">
-                                    <p>{{task.description}}</p>
-                                </div>
-                                <div class="col-6">
-                                    Edit , Delete
-                                </div>
-                            </div>
-                        </li>
-                    </ul>
-                </ng-template>
-                
-            </div>
-        </div>
-    </form>
-    
 
+  <!-- Add Task Form -->
+  <form (ngSubmit)="createTask()" class="mb-5">
+    <div class="row g-2 align-items-center justify-content-center">
+      <div class="col-md-5">
+        <input type="text" class="form-control form-control-lg"
+               placeholder="Enter Task Description"
+               [(ngModel)]="newTask.description" name="newtaskdescription" required>
+      </div>
+      <div class="col-md-2 d-grid">
+        <button class="btn btn-success btn-lg" type="submit">Add Task</button>
+      </div>
+    </div>
+  </form>
+
+  <!-- Task List -->
+  <div *ngIf="tasks.length <= 0" class="text-center text-muted">
+    <h4>No Tasks Available</h4>
+  </div>
+
+  <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-3">
+    <div class="col" *ngFor="let task of tasks">
+      <div class="card shadow-sm h-100">
+        <div class="card-body d-flex justify-content-between align-items-center">
+          <div>
+            <h5 class="card-title mb-0">{{ task.description }}</h5>
+            <small class="text-muted">Completed: {{ task.completed }}</small>
+          </div>
+          <div class="btn-group-vertical">
+            <button class="btn btn-primary btn-sm mb-1"
+                    (click)="updatevisibility(task)">Edit</button>
+            <button class="btn btn-danger btn-sm">Delete</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Edit Task Form -->
+  <div *ngIf="isVisible" class="mt-5 p-4 border rounded shadow-sm bg-light">
+    <h5>Edit Task</h5>
+    <div class="row g-3 align-items-center">
+      <div class="col-md-3">
+        <input type="number" class="form-control" [(ngModel)]="idtochange" name="upd" placeholder="Task ID">
+      </div>
+      <div class="col-md-6">
+        <input type="text" class="form-control" [(ngModel)]="updatedTask.description" name="upd2" placeholder="Task Description">
+      </div>
+      <div class="col-md-3 d-grid">
+        <button (click)="updateTask()" class="btn btn-primary">Update</button>
+      </div>
+    </div>
+  </div>
 
 </div>
-
-

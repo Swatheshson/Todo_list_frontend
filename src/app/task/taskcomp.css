@@ -1,13 +1,16 @@
-.heading{
-    display:flex;
-    flex-direction:row;
-    justify-content:center;
-    font-style:oblique;
-    color:#2c442c;
+.heading {
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(90deg, #4facfe, #00f2fe);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 700;
+  font-size: 2.5rem;
 }
-.crtask{
-    border:1px solid black;
-    padding:12px;
-    margin:5px;
 
+.card {
+  transition: transform 0.2s ease;
+}
+
+.card:hover {
+  transform: scale(1.03);
 }

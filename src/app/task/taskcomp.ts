@@ -16,8 +16,14 @@ export class Taskcomp implements OnInit {
   //dependency injection is done here 
   constructor(private taskService:TaskService){}
   
+  //tosave returned taskobj
+  idtochange!:number;
+  isVisible:boolean=false;
   
   newTask:Task = {description:"", completed:false};
+  updatedTask:Task = {description:"", completed:false};
+
+  
 
   tasks:Task[] = [];
     ngOnInit(): void {
@@ -36,6 +42,19 @@ export class Taskcomp implements OnInit {
       }
     )
   }
+  //updatetasks method
+  updateTask():void{
+    this.taskService.updateTask(this.idtochange,this.updatedTask).subscribe((upd)=>{
+      this.updatedTask={description:"",completed:false}
+    })
+  }
+  
+  updatevisibility(task: Task): void {
+  this.isVisible = true;
+}
+
+
+
 
 
 }
